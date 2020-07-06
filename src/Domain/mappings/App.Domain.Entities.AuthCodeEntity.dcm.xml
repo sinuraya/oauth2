@@ -1,0 +1,18 @@
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping
+                          https://www.doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+
+    <entity name="App\Domain\Entities\AuthCodeEntity" table="auth_code">
+        <id name="identifier" column="id" type="guid">
+            <generator strategy="UUID" />
+        </id>
+
+        <field name="expiryDateTime" column="expired_at" type="datetime" />
+        <field name="userIdentifier" column="uid" type="guid" />
+        <many-to-one field="client" target-entity="App\Domain\Entities\ClientEntity">
+            <join-column name="client_id" referenced-column-name="id" />
+        </many-to-one>
+        <field name="redirectUri" column="redirect_uri" type="string" />
+    </entity>
+</doctrine-mapping>
