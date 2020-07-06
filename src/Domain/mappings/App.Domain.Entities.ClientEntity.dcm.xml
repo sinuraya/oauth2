@@ -4,11 +4,24 @@
                           https://www.doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
 
     <entity name="App\Domain\Entities\ClientEntity" table="client">
-        <id name="identifier" column="id" type="guid">
-            <generator strategy="UUID" />
+        <id name="identifier" column="id" type="integer">
+            <generator strategy="AUTO" />
         </id>
-        <field name="name" column="name" type="string" />
+        <field name="name" column="name" type="string" unique="true" />
         <field name="redirectUri" column="redirect_uri" type="string" />
         <field name="isConfidential" column="is_confidential" type="boolean" />
+        <field name="clientId" column="client_id" type="guid" unique="true" />
+        <field name="username" column="username" type="string" unique="true" />
+        <field name="email" column="email" type="string" nullable="true" />
+        <field name="siteUrl" column="site_url" type="string" nullable="true" />
+        <field name="phone" column="phone" type="string" nullable="true" />
+        <field name="pic" column="pic" type="string" nullable="true" />
+        <field name="passwordHash" column="password_hash" type="string" />
+        <field name="secretKey" column="secret_key" type="string" nullable="true" />
+        <field name="authKey" column="auth_key" type="string" nullable="true" />
+        <field name="passwordResetToken" column="password_reset_token" type="string" nullable="true" />
+        <field name="status" column="status" type="smallint" />
+        <field name="createdAt" column="created_at" type="datetime" />
+        <field name="updatedAt" column="updated_at" type="datetime" />
     </entity>
 </doctrine-mapping>
